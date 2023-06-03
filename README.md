@@ -85,13 +85,31 @@ public interface LoginLoc {
 
 - ## Tests
 ### `LoginTest`
-This will test login with invalid and valid data. Invalid data will include test for old password and wrong password.
+Will test the login module. Using invalid and valid data.
 
-`Assertion` assert the displayed customer name is identical with the expected data (for valid login). 
-And assert unsuccessful login message (for invalid login).
+`invalidLogin` asserts the presence of invalid login events when executed. (invalid login)
+
+`validLogin` asserts the appearance of the expected customer name corresponding to the membership. (valid login)
 
 ### `PurgeTest`
 This will read if any items are in the shopping cart, 
 if cart is not empty it will goto cart and then delete all items and confirm deletion process.
 
-`Asswertion` assert actual cart is empty after the test is complete. (actual count vs. expected count)
+`cartIsEmpty` asserts cart is empty after the purge.
+
+`actualExpectedCartCountEquality` asserts actual and expected cart count quantities are equal.
+
+### `SearchTest`
+This will perform search test on both invalid inputs and valid inputs.
+
+`assertNoResultsFound` asserts the presence of no-item-found message. (invalid input)
+
+`assertResultsAreFound` asserts the appearance of items in search results. (valid input)
+
+`assertSearchResultsAccuracy` asserts the accuracy of search results. (valid input)
+
+```
+Assert Results Accuracy.
+Expected :100%
+Actual   :88%
+```
