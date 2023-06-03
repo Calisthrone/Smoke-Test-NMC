@@ -15,9 +15,7 @@ public class SuperPage implements SuperLoc {
     public static int actualCartCount = 1000;
     public static int expectedCartCount = 1000;
 
-    public SuperPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    public SuperPage(WebDriver driver) {this.driver = driver;}
 
     // ============================== Create Element Helper Methods ============================== \\
 

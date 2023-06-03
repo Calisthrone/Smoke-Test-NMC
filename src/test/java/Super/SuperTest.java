@@ -23,5 +23,10 @@ public class SuperTest {
         cartPage = new CartPage(driver);
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
+
+        driver.get("https://www.nahdionline.com/ar");
     }
+
+    // this method will return an instance of the static driver used everywhere in project.
+    public static WebDriver getDriver() {return driver;}
 }
