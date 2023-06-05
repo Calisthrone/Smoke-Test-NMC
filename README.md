@@ -91,25 +91,38 @@ Will test the login module. Using invalid and valid data.
 
 `validLogin` asserts the appearance of the expected customer name corresponding to the membership. (valid login)
 
+##
 ### `PurgeTest`
 This will read if any items are in the shopping cart, 
 if cart is not empty it will goto cart and then delete all items and confirm deletion process.
 
 `cartIsEmpty` asserts cart is empty after the purge.
 
-`actualExpectedCartCountEquality` asserts actual and expected cart count quantities are equal.
+`accuracyOfCartCount` asserts actual and expected cart count quantities are equal.
 
+##
 ### `SearchTest`
 This will perform search test on both invalid inputs and valid inputs.
 
-`assertNoResultsFound` asserts the presence of no-item-found message. (invalid input)
+`noResultsFound` asserts the presence of no-item-found message. (invalid input)
 
-`assertResultsAreFound` asserts the appearance of items in search results. (valid input)
+`resultsAreFound` asserts the appearance of items in search results. (valid input)
 
-`assertSearchResultsAccuracy` asserts the accuracy of search results. (valid input)
+`searchResultsAccuracy` asserts the accuracy of search results. (valid input)
 
 ```
 Assert Results Accuracy.
 Expected :100%
 Actual   :88%
 ```
+
+##
+### `AddToCartTest`
+This will perform two main tests, add to cart from homepage and add to cart from product page.
+
+`itemIsActuallyAdded` asserts the pop-up message appearance when item is added and the inclusion of related item name in it.
+
+`accuracyOfQuantitiesAdded` assert the displayed quantities to add is equal to the expected ones.
+
+`accuracyOfCartCount` asserts actual and expected cart count quantities are equal, after adding to cart.
+
