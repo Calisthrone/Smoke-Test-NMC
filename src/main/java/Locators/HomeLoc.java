@@ -35,4 +35,8 @@ public interface HomeLoc {
     String addedQuantityLocatorTail = "]/div/div/div[1]/div[2]/div[4]/div/form/div[1]/input";
 
     By successfulAddToCartLocator = By.xpath("//*[@id=\"maincontent\"]/div[2]/div[3]/div/div/div[1]");
+
+    // Parts of item to click locators
+    String itemToClickHead = "//*[@id=\"instant-search-results-container\"]/div/div/ol/li[";
+    String itemToClickTail = "]/div/div/div[1]/div[1]/a/img";
 }

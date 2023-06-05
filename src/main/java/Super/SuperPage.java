@@ -90,6 +90,11 @@ public class SuperPage implements SuperLoc {
         Vars.actualCartCount = Integer.parseInt(cartCounter.getAttribute("textContent"));
     }
 
+    // This method must run as the first line when clicking on 'Add To Cart' button if you are coming from
+    // another 'Add To Cart' operation.
+    // This is because this quantity will be affected by previous addToCart operations.
+    public void resetExpectedQuantityToAdd() {Vars.expectedQuantityToAdd = 1;}
+
     // ============================== Access From Anywhere Helper Methods ============================== \\
 
     public void gotoMainPage() {clickOn(mainPageLocator);}

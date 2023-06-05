@@ -5,7 +5,6 @@
 
     <test verbose="2" name="Pages.LoginPage Test">
         <classes>
-            <class name="Test.LoginTest"/>
             <class name="Test.PurgeTest"/>
             <class name="Test.SearchTest"/>
             <class name="Test.AddToCartTest"/>

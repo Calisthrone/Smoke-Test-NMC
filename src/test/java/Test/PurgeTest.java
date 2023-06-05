@@ -10,8 +10,7 @@ public class PurgeTest extends SuperTest {
     public void purgeCart() {
 
         cartPage
-                .preparePurge()
-                .purgeCart(); // this method will be only executed when actualCartCount != 0
+                .purgeCart();
 
         Asserting.cartIsEmpty();
         Asserting.accuracyOfCartCount();

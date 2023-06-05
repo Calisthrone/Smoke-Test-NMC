@@ -26,7 +26,11 @@ public class SuperTest {
 
         driver.get("https://www.nahdionline.com/ar");
 
-        homePage.acceptCookies();
+        homePage
+                .acceptCookies()
+                .gotoLoginPage()
+                .enterUsername("calisthrone@gmail.com")
+                .enterPassword("a0100350048");
     }
 
     // this method will return an instance of the static driver used everywhere in project.

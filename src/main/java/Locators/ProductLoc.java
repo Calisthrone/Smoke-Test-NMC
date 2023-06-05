@@ -1,8 +1,12 @@
 package Locators;
 
+import org.openqa.selenium.By;
+
 public interface ProductLoc {
 
-    String itemToClickHead = "//*[@id=\"instant-search-results-container\"]/div/div/ol/li[";
-    String itemToClickTail = "]/div/div/div[1]/div[1]/a/img";
+    By plusButtonLocator = By.xpath("//button[contains(@class,'icon-plus')]");
+    By minusButtonLocator = By.xpath("//button[contains(@class,'icon-minus-solid')]");
+    By addToCartButtonLocator = By.xpath("//button[@id='product-addtocart-button']");
 
+    By addedQuantityLocator = By.xpath("//input[@id=\"qty\"]");
 }

@@ -55,7 +55,7 @@ public class HomePage extends SuperPage implements HomeLoc {
     public HomePage addToCart_homepage(String location) {
         clickOn(addToCartUtil.getAddToCartLocator(location));
         addToCartUtil.setAddToCartMessage();
-        addToCartUtil.setActualAddedQuantity(location);
+        addToCartUtil.setActualAddedQuantity_homepage(location);
         Vars.expectedCartCount = Vars.expectedCartCount + Vars.actualQuantityToAdd;
         updateActualCartCount();
 
@@ -64,8 +64,7 @@ public class HomePage extends SuperPage implements HomeLoc {
     }
 
     public ProductPage clickOnItem(String location) {
-
-
+        clickOn(addToCartUtil.getItemToClickLocator(location));
         return new ProductPage(driver);
     }
 }
