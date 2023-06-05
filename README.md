@@ -85,11 +85,16 @@ public interface LoginLoc {
 
 - ## Tests
 ### `LoginTest`
-Will test the login module. Using invalid and valid data.
 
-`invalidLogin` asserts the presence of invalid login events when executed. (invalid login)
+Login test is now integrated in the pre-suite test preparation.
+This step was made to give more support toward Unit Testing and Module-Specific-Validation as most of the
+app functionality 'except for search' is dependant on being in logged-in state.
 
-`validLogin` asserts the appearance of the expected customer name corresponding to the membership. (valid login)
+~~Will test the login module. Using invalid and valid data.~~
+
+~~`invalidLogin` asserts the presence of invalid login events when executed. (invalid login)~~
+
+~~`validLogin` asserts the appearance of the expected customer name corresponding to the membership. (valid login)~~
 
 ##
 ### `PurgeTest`
