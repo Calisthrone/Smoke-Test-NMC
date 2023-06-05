@@ -25,6 +25,8 @@ public class SuperTest {
         loginPage = new LoginPage(driver);
 
         driver.get("https://www.nahdionline.com/ar");
+
+        homePage.acceptCookies();
     }
 
     // this method will return an instance of the static driver used everywhere in project.

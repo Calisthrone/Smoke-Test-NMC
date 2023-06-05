@@ -1,6 +1,7 @@
 package Test;
 
 import Assert.Asserting;
+import DataRepo.Vars;
 import Super.SuperTest;
 import org.testng.annotations.Test;
 
@@ -8,23 +9,24 @@ public class SearchTest extends SuperTest {
 
     // UNIT
     @Test(priority = 1)
-    public void searchForUnavailableItem() {
+    public void invalidSearch() {
         homePage
-                .searchFor("impossibleToFindText");
+                .searchFor("impossibleToFindText", false);
 
         // Assertion
-        Asserting.assertNoResultsFound();
+        Asserting.noResultsFound();
 
         homePage
                 .gotoHomepage(); // go to homepage (after assertion) to make another search test
     }
 
+    // UNIT
     @Test(priority = 2)
-    public void searchForItem() {
-        homePage.searchFor("كولد");
+    public void validSearch() {
+        homePage.searchFor(Vars.searchText, true);
 
         // Assertion
-        Asserting.assertResultsAreFound();
-        Asserting.assertSearchResultsAccuracy();
+        Asserting.resultsAreFound();
+        Asserting.searchResultsAccuracy();
     }
 }

@@ -1,8 +1,13 @@
 package Super;
 
+import DataRepo.Vars;
 import Locators.HomeLoc;
 import Locators.SuperLoc;
-import org.openqa.selenium.*;
+import com.google.errorprone.annotations.Var;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,10 +17,21 @@ public class SuperPage implements SuperLoc {
 
     public WebDriver driver;
 
-    public static int actualCartCount = 1000;
-    public static int expectedCartCount = 1000;
-
     public SuperPage(WebDriver driver) {this.driver = driver;}
+
+    // temporary verification & debugging method
+    // todo: remove by the end of project
+
+    public static void printCurrentVars(String whereIsCalled) {
+        System.out.println("This current status of Vars is called from: " + whereIsCalled);
+        System.out.println("searchText = " + Vars.searchText);
+        System.out.println("addToCartMessage = " + Vars.addToCartMessage);
+        System.out.println("actualCartCount = " + Vars.actualCartCount);
+        System.out.println("expectedCartCount = " + Vars.expectedCartCount);
+        System.out.println("expectedQuantityToAdd = " + Vars.expectedQuantityToAdd);
+        System.out.println("actualQuantityToAdd = " + Vars.actualQuantityToAdd);
+        System.out.println("searchResultsCount = " + Vars.searchResultsCount);
+    }
 
     // ============================== Create Element Helper Methods ============================== \\
 
@@ -26,14 +42,6 @@ public class SuperPage implements SuperLoc {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    // creates an element that will receive user input
-//    protected WebElement createEditableElement(By locator) {
-//
-//        return (new WebDriverWait(driver, Duration.ofSeconds(30)))
-//                .until(ExpectedConditions.presenceOfElementLocated(locator));
-//    }
-
-    // creates an element that is intended to read data from
     public WebElement createElement(By locator) {
 
         return (new WebDriverWait(driver, Duration.ofSeconds(30)))
@@ -42,9 +50,7 @@ public class SuperPage implements SuperLoc {
 
     // ============================== Element Interactions Helper Methods ============================== \\
 
-    protected void clickOn(By locator) {
-        createClickableElement(locator).click();
-    }
+    protected void clickOn(By locator) {createClickableElement(locator).click();}
 
     // clearText -> if you want to clear the text field before entering text
     // clickEnter -> if you want to mimic pressing enter after entering a text
@@ -81,16 +87,12 @@ public class SuperPage implements SuperLoc {
                 .until(ExpectedConditions.attributeToBe(customerName, "textContent", "محمد"));
 
         WebElement cartCounter = createElement(HomeLoc.cartCounterLocator);
-        actualCartCount = Integer.parseInt(cartCounter.getAttribute("textContent"));
+        Vars.actualCartCount = Integer.parseInt(cartCounter.getAttribute("textContent"));
     }
 
     // ============================== Access From Anywhere Helper Methods ============================== \\
 
-    public void gotoMainPage() {
-        clickOn(mainPageLocator);
-    }
+    public void gotoMainPage() {clickOn(mainPageLocator);}
 
-    public void gotoCartPage() {
-        clickOn(cartLocator);
-    }
+    public void gotoCartPage() {clickOn(cartLocator);}
 }

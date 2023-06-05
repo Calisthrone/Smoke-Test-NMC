@@ -6,11 +6,8 @@ import org.testng.annotations.Test;
 public class LoginTest extends SuperTest {
 
     @Test(priority = 1)
-    public void prepareWebsite() {
-
+    public void gotoLogin() {
         homePage
-                .gotoHomepage()
-                .acceptCookies()
                 .gotoLoginPage();
     }
 

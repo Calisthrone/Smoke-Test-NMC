@@ -1,5 +1,6 @@
 package PageObjects;
 
+import DataRepo.Vars;
 import Locators.CartLoc;
 import Super.SuperPage;
 import org.openqa.selenium.WebDriver;
@@ -16,16 +17,16 @@ public class CartPage extends SuperPage implements CartLoc {
         updateActualCartCount();
 
         // if cart is actually empty -> set the expected quantity -> zero
-        if (actualCartCount == 0) {
-            expectedCartCount = 0;
+        if (Vars.actualCartCount == 0) {
+            Vars.expectedCartCount = 0;
 
             // todo: remove these debugging lines (end of project)
             System.out.println("============================== Message Start ==============================");
             System.out.println("CartPage.class | @Test: preparePurge");
             System.out.println("===== If this message appears, then the purgeCart method will not execute. =====");
             System.out.println("===== Because the actual cart count is == 0, so no need to purge the cart. =====");
-            System.out.println("actual cart count = " + actualCartCount);
-            System.out.println("expected cart count = " + expectedCartCount);
+            System.out.println("actual cart count = " + Vars.actualCartCount);
+            System.out.println("expected cart count = " + Vars.expectedCartCount);
             System.out.println("============================== Message End ==============================\n\n");
         }
         return this;
@@ -34,7 +35,7 @@ public class CartPage extends SuperPage implements CartLoc {
     // if cart is not empty -> delete all items from cart
     public CartPage purgeCart() {
 
-        if (actualCartCount != 0) {
+        if (Vars.actualCartCount != 0) {
 
             gotoCartPage();
 
@@ -52,18 +53,18 @@ public class CartPage extends SuperPage implements CartLoc {
 
             // when empty cart message appears, then it is safe to update actualCartCount
             waitForVisibilityOf(emptyCartLocator);
-            expectedCartCount = 0;
+            Vars.expectedCartCount = 0;
 
             sleepThread(1); // had one time 'NumberFormatException' because too fast to read the read element.
 
             updateActualCartCount();
 
-            // todo: remove these debugging lines (end of project)
-            System.out.println("============================== Message Start ==============================");
-            System.out.println("CartPage.class | @Test: purgeCart");
-            System.out.println("actual cart count = " + actualCartCount);
-            System.out.println("expected cart count = " + expectedCartCount);
-            System.out.println("============================== Message End ==============================\n\n");
+//            // todo: remove these debugging lines (end of project)
+//            System.out.println("============================== Message Start ==============================");
+//            System.out.println("CartPage.class | @Test: purgeCart");
+//            System.out.println("actual cart count = " + Vars.actualCartCount);
+//            System.out.println("expected cart count = " + Vars.expectedCartCount);
+//            System.out.println("============================== Message End ==============================\n\n");
 
             gotoMainPage();
         }

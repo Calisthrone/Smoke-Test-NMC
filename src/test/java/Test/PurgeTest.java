@@ -14,6 +14,6 @@ public class PurgeTest extends SuperTest {
                 .purgeCart(); // this method will be only executed when actualCartCount != 0
 
         Asserting.cartIsEmpty();
-        Asserting.actualExpectedCartCountEquality();
+        Asserting.accuracyOfCartCount();
     }
 }
