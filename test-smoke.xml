@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smoke Test Suite">
+<suite name="Smoke test Suite">
 
-    <test verbose="2" name="Pages.LoginPage Test">
+    <test verbose="2" name="test SUITE - SMOKE">
         <classes>
-            <class name="Test.PurgeTest"/>
-            <class name="Test.SearchTest"/>
-            <class name="Test.AddToCartTest"/>
+            <class name="test.PurgeTest"/>
+            <class name="test.SearchTest"/>
+            <class name="test.AddToCartTest"/>
         </classes>
     </test>
 </suite>

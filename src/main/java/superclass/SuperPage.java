@@ -1,9 +1,8 @@
-package Super;
+package superclass;
 
-import DataRepo.Vars;
-import Locators.HomeLoc;
-import Locators.SuperLoc;
-import com.google.errorprone.annotations.Var;
+import data.Vars;
+import locator.HomeLoc;
+import locator.SuperLoc;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +23,7 @@ public class SuperPage implements SuperLoc {
 
     public static void printCurrentVars(String whereIsCalled) {
         System.out.println("This current status of Vars is called from: " + whereIsCalled);
-        System.out.println("searchText = " + Vars.searchText);
+        System.out.println("searchText = " + Vars.searchName_AR);
         System.out.println("addToCartMessage = " + Vars.addToCartMessage);
         System.out.println("actualCartCount = " + Vars.actualCartCount);
         System.out.println("expectedCartCount = " + Vars.expectedCartCount);
@@ -79,21 +78,15 @@ public class SuperPage implements SuperLoc {
     // ============================== Get Actual Data Helper Methods ============================== \\
 
     public void updateActualCartCount() {
-
         // wait for the real customer name to appear. when it appears, the cart counter is 100% updated.
         WebElement customerName = createElement(HomeLoc.customerNameLocator);
-        // todo: change the value to -> customer.firstName
+
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.attributeToBe(customerName, "textContent", "محمد"));
 
         WebElement cartCounter = createElement(HomeLoc.cartCounterLocator);
         Vars.actualCartCount = Integer.parseInt(cartCounter.getAttribute("textContent"));
     }
-
-    // This method must run as the first line when clicking on 'Add To Cart' button if you are coming from
-    // another 'Add To Cart' operation.
-    // This is because this quantity will be affected by previous addToCart operations.
-    public void resetExpectedQuantityToAdd() {Vars.expectedQuantityToAdd = 1;}
 
     // ============================== Access From Anywhere Helper Methods ============================== \\
 

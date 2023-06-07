@@ -1,7 +1,7 @@
-package Test;
+package test;
 
-import Assert.Asserting;
-import Super.SuperTest;
+import validation.Asserting;
+import superclass.SuperTest;
 import org.testng.annotations.Test;
 
 public class PurgeTest extends SuperTest {

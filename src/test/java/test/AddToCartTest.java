@@ -1,8 +1,8 @@
-package Test;
+package test;
 
-import Assert.Asserting;
-import DataRepo.Vars;
-import Super.SuperTest;
+import validation.Asserting;
+import data.Vars;
+import superclass.SuperTest;
 import org.testng.annotations.Test;
 
 public class AddToCartTest extends SuperTest {
@@ -15,11 +15,11 @@ public class AddToCartTest extends SuperTest {
     @Test(priority = 1)
     public void addFromHomePage() {
         homePage
-                .incQ_homepage("2") // Q = 2
-                .incQ_homepage("2") // Q = 3
-                .incQ_homepage("2") // Q = 4
-                .decQ_homepage("2") // Q = 3
-                .addToCart_homepage("2");
+                .incQ_homepage(Vars.position) // Q = 2
+                .incQ_homepage(Vars.position) // Q = 3
+                .incQ_homepage(Vars.position) // Q = 4
+                .decQ_homepage(Vars.position) // Q = 3
+                .addToCart_homepage(Vars.position);
 
         Asserting.itemIsActuallyAdded();
         Asserting.accuracyOfQuantitiesAdded();
@@ -32,7 +32,10 @@ public class AddToCartTest extends SuperTest {
     @Test(priority = 2)
     public void addFromProductPage() {
         homePage
-                .clickOnItem("1")
+                .prepareRandomProduct()
+                .gotoHomepage()
+                .searchFor(Vars.searchName_AR, true)
+                .clickOnItem(Vars.position)
                 .incQ_productpage() // Q = 2
                 .incQ_productpage() // Q = 3
                 .decQ_productpage() // Q = 2

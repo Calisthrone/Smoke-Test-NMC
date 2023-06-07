@@ -1,4 +1,4 @@
-# Smoke-Test-NMC
+# Smoke-test-NMC
 `Uncompleted`
 
 This is a test automation project for NMC.
@@ -15,17 +15,17 @@ So every commit will include the newly added feature.
 When all features are implemented, I will mark it `Completed` at the top.
 
 - ## Project Usage
-This project is intended to be used as a `Test Scenario Based` or as a `Unit Test Based`. 
+This project is intended to be used as a `test Scenario Based` or as a `Unit test Based`. 
 This is because the test workflow is designed to accommodate with both cases. 
 In the `SuperClass` a `@BeforeSuite` method is defined to just setup the driver and then goto homepage. 
-From the homepage you can setup a `Scenario-Based Test` by scripting a manual test case, 
-or just run a `Unit Test` for a specific module.
+From the homepage you can setup a `Scenario-Based test` by scripting a manual test case, 
+or just run a `Unit test` for a specific module.
 
-Note that any `Unit Test` test case will have a `// UNIT` comment before the `@Test` annotation.
+Note that any `Unit test` test case will have a `// UNIT` comment before the `@test` annotation.
 
 ```
     // UNIT
-    @Test(priority = 1)
+    @test(priority = 1)
     public void searchForUnavailableItem() {
         homePage
                 .searchFor("impossibleToFindText");
@@ -55,7 +55,7 @@ I made the instances initialized in the `SuperTest.class` and made them `static`
 Again this made the process more straight forward without affecting the performance.
 
 ```
-    @Test(priority = 1)
+    @test(priority = 1)
     public void prepareWebsite() {
 
         homePage
@@ -67,7 +67,7 @@ Again this made the process more straight forward without affecting the performa
 In the above code snippet, you can see the simplicity of creating a test case, no need to initialize the page object. 
 And the process is very understandable by any one.
 
-### `Locators Interfaces`
+### `locator Interfaces`
 For separation of areas of concerns, I added each page object locators in a corresponding interface, 
 the page object will implement this interface for fast and clean access of locators.
 
@@ -111,7 +111,7 @@ This will perform search test on both invalid inputs and valid inputs.
 `searchResultsAccuracy` asserts the accuracy of search results. (valid input)
 
 ```
-Assert Results Accuracy.
+validation Results Accuracy.
 Expected :100%
 Actual   :88%
 ```

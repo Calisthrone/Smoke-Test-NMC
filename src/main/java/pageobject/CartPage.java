@@ -1,8 +1,9 @@
-package PageObjects;
+package pageobject;
 
-import DataRepo.Vars;
-import Locators.CartLoc;
-import Super.SuperPage;
+import data.Vars;
+import locator.CartLoc;
+import locator.HomeLoc;
+import superclass.SuperPage;
 import org.openqa.selenium.WebDriver;
 
 public class CartPage extends SuperPage implements CartLoc {
@@ -23,15 +24,15 @@ public class CartPage extends SuperPage implements CartLoc {
         if (Vars.actualCartCount != 0) {
 
             gotoCartPage();
-            waitForVisibilityOf(switchShippingLocator);
-            clickOn(deleteAllItemsButtonLocator);
+            waitForVisibilityOf(HomeLoc.switchShippingLocator);
+            clickOn(CartLoc.deleteAllItemsButtonLocator);
 
             sleepThread(1); // stable without wait, but sometimes confirm message are too fast to see.
 
-            clickOn(confirmDeleteButtonLocator);
+            clickOn(CartLoc.confirmDeleteButtonLocator);
 
             // when empty cart message appears, then it is safe to update actualCartCount
-            waitForVisibilityOf(emptyCartLocator);
+            waitForVisibilityOf(CartLoc.emptyCartLocator);
             Vars.expectedCartCount = 0;
 
             sleepThread(1); // had one time 'NumberFormatException' because too fast to read the read element.

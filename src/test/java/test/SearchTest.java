@@ -1,8 +1,9 @@
-package Test;
+package test;
 
-import Assert.Asserting;
-import DataRepo.Vars;
-import Super.SuperTest;
+import superclass.SuperPage;
+import validation.Asserting;
+import data.Vars;
+import superclass.SuperTest;
 import org.testng.annotations.Test;
 
 public class SearchTest extends SuperTest {
@@ -23,7 +24,9 @@ public class SearchTest extends SuperTest {
     // UNIT
     @Test(priority = 2)
     public void validSearch() {
-        homePage.searchFor(Vars.searchText, true);
+        homePage
+                .prepareRandomProduct()
+                .searchFor(Vars.searchName_AR, true);
 
         // Assertion
         Asserting.resultsAreFound();

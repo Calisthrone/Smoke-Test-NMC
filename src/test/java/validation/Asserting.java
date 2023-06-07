@@ -1,12 +1,12 @@
-package Assert;
+package validation;
 
-import DataRepo.Vars;
-import Locators.HomeLoc;
-import Super.SuperPage;
-import Super.SuperTest;
+import data.Vars;
+import locator.HomeLoc;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import superclass.SuperPage;
+import superclass.SuperTest;
 
 public class Asserting {
 
@@ -44,7 +44,9 @@ public class Asserting {
 
         int matchingResults = 0;
         for(WebElement link : Vars.searchResultElementList) {
-            if (link.getAttribute("textContent").matches("(?i).*" + Vars.searchText + ".*")) {
+            if (
+                    link.getAttribute("textContent").matches("(?i).*" + Vars.searchName_AR + ".*")
+            ) {
                 matchingResults = matchingResults + 1;
             }
         }
@@ -57,7 +59,7 @@ public class Asserting {
     // ============================== AddToCartTest Assertions ============================== \\
 
     public static void itemIsActuallyAdded() {
-        Assert.assertTrue(Vars.addToCartMessage.contains(Vars.searchText),
+        Assert.assertTrue(Vars.addToCartMessage.contains(Vars.searchName_AR),
                 "\nItem Is Actually Added | asserting: Presence Of Add To Cart Message Containing Search Text");
     }
 

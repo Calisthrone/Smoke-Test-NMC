@@ -1,4 +1,4 @@
-package DataRepo;
+package data;
 
 import org.openqa.selenium.WebElement;
 
@@ -6,9 +6,11 @@ import java.util.List;
 
 public class Vars {
 
-    // todo: switch to data-driven framework where search text is generated randomly from products database.
+    public static String searchName_AR = "";
+    public static String fullName_AR = "";
+    public static String position = "";
+    public static String price = "";
 
-    public static String searchText = "اليكا"; // the text we search for, also used in asserting results accuracy.
     public static String addToCartMessage = ""; // the content of the pop-up message that appears after adding item to cart.
 
     public static int actualCartCount = 1000; // actual cart quantity, being read from the number in the cart icon.

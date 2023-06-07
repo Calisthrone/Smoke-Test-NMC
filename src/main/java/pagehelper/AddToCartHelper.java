@@ -1,15 +1,15 @@
-package TestUtils;
+package pagehelper;
 
-import DataRepo.Vars;
-import Locators.HomeLoc;
-import Locators.ProductLoc;
-import Super.SuperPage;
+import data.Vars;
+import locator.HomeLoc;
+import locator.ProductLoc;
+import superclass.SuperPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class AddToCartUtil extends SuperPage {
+public class AddToCartHelper extends SuperPage {
 
-    public AddToCartUtil(WebDriver driver) {super(driver);}
+    public AddToCartHelper(WebDriver driver) {super(driver);}
 
     // This will return the locator of the plus and minus buttons of homepage according to location.
     public By getPlusButtonLocator(String location) {
@@ -18,7 +18,7 @@ public class AddToCartUtil extends SuperPage {
                 + HomeLoc.plusButtonLocatorTail);
     }
 
-    // // This will return the locator of the plus and minus buttons of homepage according to location.
+    // This will return the locator of the plus and minus buttons of homepage according to location.
     public By getMinusButtonLocator(String location) {
         return By.xpath(HomeLoc.minusButtonLocatorHead
                 + location
@@ -61,6 +61,4 @@ public class AddToCartUtil extends SuperPage {
                 + location
                 + HomeLoc.itemToClickTail);
     }
-
-
 }

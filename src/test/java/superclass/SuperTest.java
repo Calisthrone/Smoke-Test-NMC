@@ -1,8 +1,10 @@
-package Super;
+package superclass;
 
-import PageObjects.CartPage;
-import PageObjects.HomePage;
-import PageObjects.LoginPage;
+import data.DataUtils;
+import data.Vars;
+import pageobject.CartPage;
+import pageobject.HomePage;
+import pageobject.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeSuite;
@@ -30,7 +32,8 @@ public class SuperTest {
                 .acceptCookies()
                 .gotoLoginPage()
                 .enterUsername("calisthrone@gmail.com")
-                .enterPassword("a0100350048");
+                .enterPassword("a0100350048")
+                .switchToStorePickup();
     }
 
     // this method will return an instance of the static driver used everywhere in project.

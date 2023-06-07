@@ -1,4 +1,4 @@
-package Locators;
+package locator;
 
 import org.openqa.selenium.By;
 
@@ -11,6 +11,9 @@ public interface HomeLoc {
 
     By cartCounterLocator = By.xpath("//span[@class='counter-number']");
     By customerNameLocator = By.xpath("//span[@class='customer-name']/span");
+
+    By switchShippingLocator = By.xpath("//div[@id=\"switcher-shipping-tabs\"]");
+    By storePickupLocator = By.xpath(" //a[@id=\"switcher-tab-label-ispu-title\"]");
 
     By searchFieldLocator = By.xpath("//input[@id=\"search\"]");
     By noResultLocator = By.xpath("//div[@class=\"no-results\"]");
