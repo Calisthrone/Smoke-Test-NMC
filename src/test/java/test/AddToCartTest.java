@@ -1,6 +1,6 @@
 package test;
 
-import validation.Asserting;
+import validation.Validate;
 import data.Vars;
 import superclass.SuperTest;
 import org.testng.annotations.Test;
@@ -21,9 +21,9 @@ public class AddToCartTest extends SuperTest {
                 .decQ_homepage(Vars.position) // Q = 3
                 .addToCart_homepage(Vars.position);
 
-        Asserting.itemIsActuallyAdded();
-        Asserting.accuracyOfQuantitiesAdded();
-        Asserting.accuracyOfCartCount();
+        Validate.itemIsActuallyAdded();
+        Validate.accuracyOfQuantitiesAdded();
+        Validate.accuracyOfCartCount();
 
         resetExpectedQuantityToAdd();
     }
@@ -41,9 +41,9 @@ public class AddToCartTest extends SuperTest {
                 .decQ_productpage() // Q = 2
                 .addToCart_productPage();
 
-        Asserting.itemIsActuallyAdded();
-        Asserting.accuracyOfQuantitiesAdded();
-        Asserting.accuracyOfCartCount();
+        Validate.itemIsActuallyAdded();
+        Validate.accuracyOfQuantitiesAdded();
+        Validate.accuracyOfCartCount();
 
         resetExpectedQuantityToAdd();
     }

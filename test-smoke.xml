@@ -3,11 +3,13 @@
 
 <suite name="Smoke test Suite">
 
-    <test verbose="2" name="test SUITE - SMOKE">
+    <test verbose="2" name="TEST SUITE - SMOKE">
         <classes>
             <class name="test.PurgeTest"/>
             <class name="test.SearchTest"/>
             <class name="test.AddToCartTest"/>
+            <class name="test.CartTest"/>
+<!--            <class name="test.OrderTest"/>-->
         </classes>
     </test>
 </suite>

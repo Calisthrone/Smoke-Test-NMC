@@ -7,7 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DataReader implements Datasource {
+// This class will read data from TEXT file and return an ArrayList<Products> that contains all products
+public class TextDatasource implements Datasource {
 
     @Override
     public ArrayList<Product> getProductsList() {
@@ -23,8 +24,7 @@ public class DataReader implements Datasource {
                 // separating the data by the comma
                 String[] singleLineArray = currentLine.split(",");
 
-                // for csv files
-                // Skipping the first line since it has only titles and no the data I want to store
+                // Skipping the first line since it has only titles and no the data to read
                 if(singleLineArray[0].startsWith("!STRUCTURE!"))
                     continue;
 
@@ -32,12 +32,12 @@ public class DataReader implements Datasource {
                 String search_EN = singleLineArray[0];
                 String fullName_EN = singleLineArray[1];
                 String position = singleLineArray[2];
-                String price = singleLineArray[3];
+                double price = Double.parseDouble(singleLineArray[3]);
                 String sku = singleLineArray[4];
                 String search_AR = singleLineArray[5];
                 String fullName_AR = singleLineArray[6];
 
-                //adding the data to the arraylist
+                // Adding the data to the arraylist
                 productsInFile.add(new Product(search_EN, fullName_EN, position, price, sku, search_AR, fullName_AR));
             }
         } catch (IOException ioe) {

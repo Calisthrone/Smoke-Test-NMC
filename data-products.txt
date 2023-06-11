@@ -1,7 +1,3 @@
-!STRUCTURE! : 1-searchName_EN 2-fullName_EN 3-searchPosition 3-price 4-sku 6-searchName_AR 7-fullName_AR
+!STRUCTURE! -> 1-searchName_EN , 2-fullName_EN , 3-searchPosition , 3-price , 4-sku , 6-searchName_AR , 7-fullName_AR
 Elica,Elica Cream 30 gm,2,19.20,100011559,اليكا,اليكا كريم 30 جم
-Rofenac,Rofenac 50 mg Tablet 20pcs,4,19.80,100015390,روفيناك,روفيناك 50 مجم 20 قرص
-Gasec,Gasec 20 mg Capsule 28pcs,1,48.40,100026953,جازيك,جازيك 20 مجم 28 كبسولة
 Enzymax,Enzymax Forte 20 Capsules,1,85.00,102009612,إنزيماكس,إنزيماكس فورت 20 كبسولة
-Rinofed,Rinofed-Plus Syrup 120 ml,3,7.65,100018751,راينوفد,راينوفد – بلاس شراب 120 مل
-Neohealar,Neo Healar Suppository 10pcs,2,58.75,100031971,نيوهيلار,نيوهيلار 10 تحاميل

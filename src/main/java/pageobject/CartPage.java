@@ -25,14 +25,14 @@ public class CartPage extends SuperPage implements CartLoc {
 
             gotoCartPage();
             waitForVisibilityOf(HomeLoc.switchShippingLocator);
-            clickOn(CartLoc.deleteAllItemsButtonLocator);
+            clickOn(deleteAllItemsButtonLocator);
 
             sleepThread(1); // stable without wait, but sometimes confirm message are too fast to see.
 
-            clickOn(CartLoc.confirmDeleteButtonLocator);
+            clickOn(confirmDeleteButtonLocator);
 
             // when empty cart message appears, then it is safe to update actualCartCount
-            waitForVisibilityOf(CartLoc.emptyCartLocator);
+            waitForVisibilityOf(emptyCartLocator);
             Vars.expectedCartCount = 0;
 
             sleepThread(1); // had one time 'NumberFormatException' because too fast to read the read element.
@@ -42,5 +42,52 @@ public class CartPage extends SuperPage implements CartLoc {
             gotoMainPage();
         }
         return this;
+    }
+
+    // calculate cart value before assertion
+    public CartPage calculateCartValue() {
+        updateActualCartValue();
+        return this;
+    }
+
+    // first step executed in cart in order to start making an order
+    public CartPage proceedToCheckout() {
+        clickOn(proceedToCheckOutButtonLocator);
+        return this;
+    }
+
+    // select the nearest store to the actual location of user to pick the order from, after clicking the ..
+    // .. map button, the driver should wait for the appearance of the suggested location container
+    public CartPage selectCurrentLocationOnMap() {
+        clickOn(currentMapLocationButtonLocator);
+        waitForVisibilityOf(pickupLocationsContainerLocator);
+        return this;
+    }
+
+    // proceed to select the payment method
+    public CartPage clickContinueToPayment() {
+        clickOn(continueToShippingButtonLocator);
+        return this;
+    }
+
+    // select cash on delivery
+    public CartPage chooseCashOnDelivery() {
+        clickOn(cashOnDeliveryLocator);
+        return this;
+    }
+
+    // create the order
+    public CartPage clickPlaceOrder() {
+        if (loadingMaskDisappeared()) {
+            clickOn(placeOrderButtonLocator);
+        }
+        return this;
+    }
+
+    // read the order number and store it in Vars for assertion
+    public void setOrderNumber() {
+        waitForVisibilityOf(orderNumberLocator);
+        Vars.orderNumber = driver.findElement(orderNumberLocator).getAttribute("textContent");
+        System.out.println("Order Number = " + Vars.orderNumber);
     }
 }

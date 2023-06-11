@@ -1,6 +1,7 @@
 package superclass;
 
 import data.Vars;
+import locator.CartLoc;
 import locator.HomeLoc;
 import locator.SuperLoc;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageobject.CartPage;
 
 import java.time.Duration;
 
@@ -18,29 +20,16 @@ public class SuperPage implements SuperLoc {
 
     public SuperPage(WebDriver driver) {this.driver = driver;}
 
-    // temporary verification & debugging method
-    // todo: remove by the end of project
-
-    public static void printCurrentVars(String whereIsCalled) {
-        System.out.println("This current status of Vars is called from: " + whereIsCalled);
-        System.out.println("searchText = " + Vars.searchName_AR);
-        System.out.println("addToCartMessage = " + Vars.addToCartMessage);
-        System.out.println("actualCartCount = " + Vars.actualCartCount);
-        System.out.println("expectedCartCount = " + Vars.expectedCartCount);
-        System.out.println("expectedQuantityToAdd = " + Vars.expectedQuantityToAdd);
-        System.out.println("actualQuantityToAdd = " + Vars.actualQuantityToAdd);
-        System.out.println("searchResultsCount = " + Vars.searchResultsCount);
-    }
-
     // ============================== Create Element Helper Methods ============================== \\
 
-    // creates an element that is clickable (wait for it to be clickable)
+    // create an element that is clickable (buttons)
     protected WebElement createClickableElement(By locator) {
 
         return (new WebDriverWait(driver, Duration.ofSeconds(30)))
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    // create all other types of elements
     public WebElement createElement(By locator) {
 
         return (new WebDriverWait(driver, Duration.ofSeconds(30)))
@@ -49,8 +38,10 @@ public class SuperPage implements SuperLoc {
 
     // ============================== Element Interactions Helper Methods ============================== \\
 
+    // clicks on any element (no need to trigger waits, already implemented in the createClickableElement method
     protected void clickOn(By locator) {createClickableElement(locator).click();}
 
+    // enter text in any kind of fields
     // clearText -> if you want to clear the text field before entering text
     // clickEnter -> if you want to mimic pressing enter after entering a text
     protected void enterText(boolean clearText, By locator, String text, boolean clickEnter) {
@@ -62,35 +53,59 @@ public class SuperPage implements SuperLoc {
 
     // ============================== Wait & Thread Helper Methods ============================== \\
 
-    protected void sleepThread(long seconds) {
+    // sleeps the thread, takes in double, where 1 is one second and 0.5 is half second and so on
+    protected void sleepThread(double seconds) {
         try {
-            Thread.sleep(Duration.ofSeconds(seconds));
+            long waitTimeInSeconds = (long) (1000 * seconds);
+            Thread.sleep(Duration.ofMillis(waitTimeInSeconds));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
+    // wait for the visibility of any object
     public void waitForVisibilityOf(By locator) {
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
+    // will return true when the Loading Animation is gone (the animation in cart related waits)
+    public boolean loadingMaskDisappeared() {
+        return (new WebDriverWait(driver, Duration.ofSeconds(30)))
+                .until(ExpectedConditions.attributeContains(loadingMaskLocator, "style", "none"));
+    }
+
     // ============================== Get Actual Data Helper Methods ============================== \\
 
+    // update the actual cart count at any page on condition the cart icon is visible
     public void updateActualCartCount() {
-        // wait for the real customer name to appear. when it appears, the cart counter is 100% updated.
-        WebElement customerName = createElement(HomeLoc.customerNameLocator);
 
         new WebDriverWait(driver, Duration.ofSeconds(30))
-                .until(ExpectedConditions.attributeToBe(customerName, "textContent", "محمد"));
+                .until(ExpectedConditions.attributeToBe(HomeLoc.customerNameLocator, "textContent", "Mohamed"));
 
         WebElement cartCounter = createElement(HomeLoc.cartCounterLocator);
         Vars.actualCartCount = Integer.parseInt(cartCounter.getAttribute("textContent"));
     }
 
+    public void updateActualCartValue() {
+        WebElement cartValueElement = createElement(CartLoc.actualCartValueLocator);
+        String priceString = cartValueElement.getAttribute("textContent")
+                .replaceAll("[^\\d.]", ""); // remove spaces and currency signs.
+        Vars.actualCartValue = Double.parseDouble(priceString);
+    }
+
+    // increase the expected quantity by 1 (triggered when clicking + button anywhere)
+    public void increaseExpectedQuantityToAdd() {Vars.expectedQuantityToAdd ++;}
+
+    // decrease the expected quantity by 1 (triggered when clicking - button anywhere)
+    public void decreaseExpectedQuantityToAdd() {Vars.expectedQuantityToAdd --;}
+
     // ============================== Access From Anywhere Helper Methods ============================== \\
 
     public void gotoMainPage() {clickOn(mainPageLocator);}
 
-    public void gotoCartPage() {clickOn(cartLocator);}
+    // this will go to the cart page from any page on the app where the cart icon is visible
+    public CartPage gotoCartPage() {
+        clickOn(cartLocator);
+        return new CartPage(driver);}
 }

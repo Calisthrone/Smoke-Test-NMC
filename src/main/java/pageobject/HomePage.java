@@ -5,7 +5,10 @@ import data.Vars;
 import locator.HomeLoc;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import superclass.SuperPage;
+
+import java.util.Objects;
 
 public class HomePage extends SuperPage implements HomeLoc {
 
@@ -46,6 +49,7 @@ public class HomePage extends SuperPage implements HomeLoc {
             // this will only run if we want to run a valid search
             setResultsList();
             setResultsCount();
+            setItemLocation(Vars.sku);
         }
         return this;
     }
@@ -70,6 +74,7 @@ public class HomePage extends SuperPage implements HomeLoc {
         setAddToCartMessage();
         setActualQuantityToAdd(location);
         updateExpectedCartCount();
+        updateExpectedCartValue();
         updateActualCartCount();
         return this;
     }
@@ -147,10 +152,31 @@ public class HomePage extends SuperPage implements HomeLoc {
     // update the expected cart count
     private void updateExpectedCartCount() {Vars.expectedCartCount = Vars.expectedCartCount + Vars.actualQuantityToAdd;}
 
+    private void updateExpectedCartValue() {Vars.expectedCartValue = Vars.expectedCartValue + (Vars.price * Vars.expectedQuantityToAdd);}
+
     // get the item you want to click according to the location
     private By getItemToClickLocator(String location) {
         return By.xpath(HomeLoc.itemToClickHead
                 + location
                 + HomeLoc.itemToClickTail);
+    }
+
+    public void setItemLocation(String sku) {
+
+        waitForVisibilityOf(allSearchResultsSelector); // wait fot all results to show up
+
+        for (int i = 1; i <= Vars.searchResultsCount; i++) {
+
+            // each search result locator is //li[@class='ais-Hits-item'][#!#]/div. replace #!# with the index start with 1
+            By singleSearchResultLocator = By.xpath("//li[@class='ais-Hits-item'][" + i + "]/div");
+
+            // each iteration we create the corresponding element in search results
+            WebElement searchResult = createElement(singleSearchResultLocator);
+
+            // if the created element attributes == sku -> will use the index of the element to click buttons
+            if (Objects.equals(searchResult.getAttribute("data-sku"), sku)) {
+                Vars.sku = String.valueOf(i);
+            }
+        }
     }
 }

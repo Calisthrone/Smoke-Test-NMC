@@ -1,6 +1,6 @@
 package test;
 
-import validation.Asserting;
+import validation.Validate;
 import superclass.SuperTest;
 import org.testng.annotations.Test;
 
@@ -12,7 +12,7 @@ public class PurgeTest extends SuperTest {
         cartPage
                 .purgeCart();
 
-        Asserting.cartIsEmpty();
-        Asserting.accuracyOfCartCount();
+        Validate.cartIsEmpty();
+        Validate.accuracyOfCartCount();
     }
 }

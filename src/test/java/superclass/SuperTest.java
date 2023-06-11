@@ -15,7 +15,7 @@ public class SuperTest {
 
     public static CartPage cartPage;
     public static HomePage homePage;
-    public static LoginPage loginPage;
+//    public static LoginPage loginPage;
 
     @BeforeSuite
     public void setup() {
@@ -24,15 +24,15 @@ public class SuperTest {
 
         cartPage = new CartPage(driver);
         homePage = new HomePage(driver);
-        loginPage = new LoginPage(driver);
+//        loginPage = new LoginPage(driver);
 
         driver.get("https://www.nahdionline.com/ar");
 
         homePage
                 .acceptCookies()
                 .gotoLoginPage()
-                .enterUsername("calisthrone@gmail.com")
-                .enterPassword("a0100350048")
+                .enterUsername("skyscores@gmail.com")
+                .enterPassword("Nmc@5773")
                 .switchToStorePickup();
     }
 

@@ -6,10 +6,17 @@ import java.util.List;
 
 public class Vars {
 
-    public static String searchName_AR = "";
-    public static String fullName_AR = "";
-    public static String position = "";
-    public static String price = "";
+    public static String orderNumber; // number of the order placed
+
+    // these dara are the expected data of a product according to the data source
+    public static String searchName_AR = ""; // search product name in Arabic
+    public static String fullName_AR = ""; // product full name in Arabic
+    public static String position = ""; // product position in search results
+    public static double price = 0; // price of the product
+    public static String sku = "";
+
+    public static double actualCartValue = 0.00; // actual -> to be read from the cart itself
+    public static double expectedCartValue = 0.00; // expected -> calculated
 
     public static String addToCartMessage = ""; // the content of the pop-up message that appears after adding item to cart.
 
