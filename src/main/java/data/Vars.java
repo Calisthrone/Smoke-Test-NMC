@@ -11,7 +11,7 @@ public class Vars {
     // these dara are the expected data of a product according to the data source
     public static String searchName_AR = ""; // search product name in Arabic
     public static String fullName_AR = ""; // product full name in Arabic
-    public static String position = ""; // product position in search results
+    public static String position = ""; // product position in search results (obtained from search) - not property of product
     public static double price = 0; // price of the product
     public static String sku = "";
 

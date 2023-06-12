@@ -19,7 +19,6 @@ public class DataUtils {
 
         Vars.searchName_AR = randomProduct.search_AR();
         Vars.fullName_AR = randomProduct.fullName_AR();
-        Vars.position = randomProduct.position();
         Vars.price = randomProduct.price();
         Vars.sku = randomProduct.sku();
     }

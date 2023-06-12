@@ -50,6 +50,7 @@ public class HomePage extends SuperPage implements HomeLoc {
             setResultsList();
             setResultsCount();
             setItemLocation(Vars.sku);
+            System.out.println("SearchFor - value of Vars.sku = " + Vars.sku);
         }
         return this;
     }
@@ -69,19 +70,17 @@ public class HomePage extends SuperPage implements HomeLoc {
     }
 
     // add product to cart (only compatible with products shown on homepage)
-    public HomePage addToCart_homepage(String location) {
+    public void addToCart_homepage(String location) {
         clickOn(getAddToCartButtonLocator(location));
         setAddToCartMessage();
         setActualQuantityToAdd(location);
         updateExpectedCartCount();
         updateExpectedCartValue();
         updateActualCartCount();
-        return this;
     }
 
-    public HomePage switchToStorePickup() {
+    public void switchToStorePickup() {
         clickOn(HomeLoc.storePickupLocator);
-        return this;
     }
 
     public ProductPage clickOnItem(String location) {
@@ -161,7 +160,9 @@ public class HomePage extends SuperPage implements HomeLoc {
                 + HomeLoc.itemToClickTail);
     }
 
-    public void setItemLocation(String sku) {
+    // sets the location of the product in search, this is done by getting the sku of the product then we search ..
+    // .. for the position of this sku in the search results. So we do not store location as it might change anytime.
+    private void setItemLocation(String sku) {
 
         waitForVisibilityOf(allSearchResultsSelector); // wait fot all results to show up
 
@@ -175,7 +176,7 @@ public class HomePage extends SuperPage implements HomeLoc {
 
             // if the created element attributes == sku -> will use the index of the element to click buttons
             if (Objects.equals(searchResult.getAttribute("data-sku"), sku)) {
-                Vars.sku = String.valueOf(i);
+                Vars.position = String.valueOf(i);
             }
         }
     }

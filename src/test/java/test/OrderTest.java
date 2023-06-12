@@ -2,6 +2,7 @@ package test;
 
 import org.testng.annotations.Test;
 import superclass.SuperTest;
+import validation.Validate;
 
 public class OrderTest extends SuperTest {
 
@@ -12,10 +13,10 @@ public class OrderTest extends SuperTest {
                 .proceedToCheckout()
                 .selectCurrentLocationOnMap()
                 .clickContinueToPayment()
-                .chooseCashOnDelivery();
-//                .clickPlaceOrder()
-//                .setOrderNumber();
+                .chooseCashOnDelivery()
+                .clickPlaceOrder()
+                .setOrderNumber();
 
-//        Validate.validOrderNumber();
+        Validate.validOrderNumber();
     }
 }

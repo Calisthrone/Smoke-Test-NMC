@@ -5,7 +5,7 @@ This is a test automation project for NMC.
 
 Using Selenium Web Driver (JAVA) and TestNG to manage tests.
 
-And implementing POM design architecture.
+And implementing POM design architecture. Data-Driven.
 
 - ## Note
 The readme description will be updated incrementally updated.
@@ -18,7 +18,7 @@ When all features are implemented, I will mark it `Completed` at the top.
 This project is intended to be used as a `test Scenario Based` or as a `Unit test Based`. 
 This is because the test workflow is designed to accommodate with both cases. 
 In the `SuperClass` a `@BeforeSuite` method is defined to just setup the driver and then goto homepage. 
-From the homepage you can setup a `Scenario-Based test` by scripting a manual test case, 
+From the homepage you can set up a `Scenario-Based test` by scripting a manual test case, 
 or just run a `Unit test` for a specific module.
 
 Note that any `Unit test` test case will have a `// UNIT` comment before the `@test` annotation.
@@ -88,7 +88,7 @@ public interface LoginLoc {
 
 Login test is now integrated in the pre-suite test preparation.
 This step was made to give more support toward Unit Testing and Module-Specific-Validation as most of the
-app functionality 'except for search' is dependant on being in logged-in state.
+app functionality 'except for search' is dependent on being in logged-in state.
 
 ~~Will test the login module. Using invalid and valid data.~~
 
@@ -131,3 +131,31 @@ This will perform two main tests, add to cart from homepage and add to cart from
 
 `accuracyOfCartCount` asserts actual and expected cart count quantities are equal, after adding to cart.
 
+##
+### `Cart Test`
+
+`cartValueAccuracy` asserts the cart actual value against the expected value.
+
+##
+### `Order Test`
+In this test, we will proceed to check out, select the current client location on map, continue to payment and choose COD for now. and then proceed and create a pickup order.
+
+`validOrderNumber` asserts the creation of a successful order.
+
+##
+### `Future Plans`
+There will be some upgrades to the tests to include:
+
+Adding and removing items from favourite.
+
+Search more complex criteria with sorting.
+
+Reordering a previous order from history.
+
+Modifying customer data.
+
+Request chronic medication refill.
+
+...
+
+That's it for now.

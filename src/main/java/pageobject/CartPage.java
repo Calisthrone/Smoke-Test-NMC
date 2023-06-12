@@ -11,7 +11,7 @@ public class CartPage extends SuperPage implements CartLoc {
     public CartPage(WebDriver driver) {super(driver);}
 
     // if cart is not empty -> delete all items from cart
-    public CartPage purgeCart() {
+    public void purgeCart() {
 
         updateActualCartCount();
 
@@ -41,13 +41,11 @@ public class CartPage extends SuperPage implements CartLoc {
 
             gotoMainPage();
         }
-        return this;
     }
 
     // calculate cart value before assertion
-    public CartPage calculateCartValue() {
+    public void calculateCartValue() {
         updateActualCartValue();
-        return this;
     }
 
     // first step executed in cart in order to start making an order

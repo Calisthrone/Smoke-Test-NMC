@@ -1,11 +1,10 @@
 package pageobject;
 
-import com.google.errorprone.annotations.Var;
 import data.Vars;
 import locator.HomeLoc;
 import locator.ProductLoc;
-import superclass.SuperPage;
 import org.openqa.selenium.WebDriver;
+import superclass.SuperPage;
 
 public class ProductPage extends SuperPage implements ProductLoc {
 
@@ -26,7 +25,7 @@ public class ProductPage extends SuperPage implements ProductLoc {
         return this;
     }
 
-    public ProductPage addToCart_productPage() {
+    public void addToCart_productPage() {
         sleepThread(0.25); // optimal wait not to skip clicking
         clickOn(ProductLoc.addToCartButtonLocator);
         setAddToCartMessage(); // waits for the pop-up message that appears when adding an item to cart
@@ -34,7 +33,6 @@ public class ProductPage extends SuperPage implements ProductLoc {
         updateExpectedCartCount(); // update expected cart count (calculated)
         updateExpectedCartValue(); // update expected cart value (calculated)
         updateActualCartCount(); // update actual cart count (read from web elements)
-        return this;
     }
 
     // ============================================================================ \\
